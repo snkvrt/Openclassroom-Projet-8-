@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prédiction de l'Image</title>
+    <style>
+        /* Styles pour le conteneur des images et des éléments */
+        .image-container {
+            display: flex;
+            justify-content: center; /* Centrer horizontalement les éléments */
+            align-items: center; /* Centrer verticalement les éléments */
+            gap: 20px; /* Espacement entre les éléments */
+            margin-top: 20px;
+        }
+        /* Styles pour les images */
+        .image {
+            max-width: 300px;
+            max-height: 300px;
+            cursor: pointer;
+        }
+        /* Styles pour les éléments */
+        .element {
+            text-align: center; /* Centrer le texte horizontalement */
+            margin: 20px; /* Espacement autour de chaque élément */
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Sélectionnée</h1>
+    <div class="image-container">
+        <!-- Conteneur pour l'image -->
+        <div class="element">
+            <h2>Image</h2>
+            <!-- Affiche l'image sélectionnée en utilisant l'URL "static" pour le chemin -->
+            <img src="{{ url_for('static', filename=selected_image_path) }}" alt="Selected Image" class="image">
+            <!-- Afficher le nom de l'image -->
+            <p>{{ selected_image_path.split('/')[-1] }}</p>
+        </div>
+        <!-- Conteneur pour le masque -->
+        <div class="element">
+            <h2>Mask réel</h2>
+            <!-- Affiche le masque correspondant en utilisant l'URL "static" pour le chemin -->
+            <img src="{{ url_for('static', filename=mask_image_path) }}" alt="Mask Image" class="image">
+            <!-- Afficher le nom du masque -->
+            <p>{{ mask_image_path.split('/')[-1] }}</p>
+        </div>
+        <!-- Conteneur pour la prédiction -->
+        <div class="element">
+            <h2>Prediction du model</h2>
+            <!-- Afficher l'image générée à partir du masque segmenté -->
+            <img src="{{ url_for('static', filename=generated_mask_path) }}" alt="Generated Masks" class="image">
+            <!-- Afficher le nom de l'image générée -->
+            <img src="data:image/png;base64,{{ generated_mask_path }}" alt="Votre Image">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Images</title>
+    <style>
+        /* Style pour le conteneur des images */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espacement entre les images */
+            margin-top: 20px;
+            flex-wrap: wrap; /* Permettre le retour à la ligne des images */
+        }
+        /* Style pour chaque élément image + nom */
+        .image-wrapper {
+            display: flex;
+            flex-direction: column; /* Aligner les noms sous les images */
+            align-items: center; /* Centrer horizontalement */
+            margin-bottom: 20px; /* Espacement entre les images et les noms */
+        }
+        /* Style pour les images */
+        .image {
+            max-width: 300px;
+            max-height: 300px;
+            cursor: pointer;
+        }
+        /* Style pour les noms d'images */
+        .image-name {
+            margin-top: 10px; /* Espacement entre l'image et le nom */
+            text-align: center; /* Centrer le texte horizontalement */
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des Images</h1>
+    <div class="image-container">
+        {% for image in image_list %}
+            <div class="image-wrapper">
+                <!-- Crée un lien pour chaque image pointant vers la page "show_selected_image" -->
+                <a href="{{ url_for('show_selected_image', filename=image) }}">
+                    <!-- Affiche l'image en utilisant l'URL "images" pour le chemin -->
+                    <img src="{{ url_for('images', filename=image) }}" alt="{{ image }}" class="image">
+                </a>
+                <!-- Affiche le nom de l'image en dessous de l'image -->
+                <p class="image-name">{{ image.split('/')[-1] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

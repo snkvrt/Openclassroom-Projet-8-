@@ -1,0 +1,4 @@
+Flask
+tensorflow==2.5.0
+matplotlib
+keras==2.12.0
