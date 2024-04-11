@@ -24,7 +24,7 @@ current_path = '/home/Jupiter/OpenClassroom-Projet-8-Participez-la-conception-d-
 variable_z = "static/"
 
 #app = Flask(__name__)
-app = Flask('Prediction des sentiments sur twitter',template_folder = template_folder)
+app = Flask('Prediction de mask',template_folder = template_folder)
 
 # Route pour la page d'accueil
 @app.route('/')
